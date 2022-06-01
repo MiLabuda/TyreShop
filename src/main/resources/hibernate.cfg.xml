@@ -29,8 +29,9 @@
         <property name="hbm2ddl.auto">create</property>
 
         <!-- TODO dokonczyc mapping? -->
-        <mapping class=""/>
-        <mapping class=""/>
+        <mapping class="wszib.edu.pl.tyreshop.model.Order"/>
+        <mapping class="wszib.edu.pl.tyreshop.model.Tyre"/>
+        <mapping class="wszib.edu.pl.tyreshop.model.User"/>
 
 
     </session-factory>
