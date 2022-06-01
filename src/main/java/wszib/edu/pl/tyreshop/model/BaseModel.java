@@ -1,5 +1,7 @@
 package wszib.edu.pl.tyreshop.model;
 
+
+
 public class BaseModel {
     private int id;
 
