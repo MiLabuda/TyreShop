@@ -1,2 +1,17 @@
-package wszib.edu.pl.tyreshop.configuration;public class AppConfiguration {
+package wszib.edu.pl.tyreshop.configuration;
+
+
+import org.hibernate.SessionFactory;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+@ComponentScan("wszib.edu.pl.tyreshop")
+public class AppConfiguration {
+
+    @Bean
+    public SessionFactory sessionFactory(){
+        return new org.hibernate.cfg.Configuration().configure().buildSessionFactory();
+    }
 }
