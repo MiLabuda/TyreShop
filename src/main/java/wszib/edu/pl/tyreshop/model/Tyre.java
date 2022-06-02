@@ -12,7 +12,7 @@ import javax.persistence.Id;
 public class Tyre {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int tyreId;
     private int ean;
     private Season season;
     private String tyreManufacturer;
