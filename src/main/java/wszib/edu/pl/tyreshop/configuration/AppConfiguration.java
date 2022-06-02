@@ -2,6 +2,7 @@ package wszib.edu.pl.tyreshop.configuration;
 
 
 import org.hibernate.SessionFactory;
+import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -13,5 +14,10 @@ public class AppConfiguration {
     @Bean
     public SessionFactory sessionFactory(){
         return new org.hibernate.cfg.Configuration().configure().buildSessionFactory();
+    }
+    @Bean
+    public ModelMapper modelMapper() {
+        ModelMapper modelMapper = new ModelMapper();
+        return modelMapper;
     }
 }
