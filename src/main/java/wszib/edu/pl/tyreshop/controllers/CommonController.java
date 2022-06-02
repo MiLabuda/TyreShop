@@ -1,2 +1,4 @@
-package wszib.edu.pl.tyreshop.controllers;public class CommonController {
+package wszib.edu.pl.tyreshop.controllers;
+
+public class CommonController {
 }
