@@ -1,6 +1,5 @@
 package wszib.edu.pl.tyreshop.repository;
 
-import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import wszib.edu.pl.tyreshop.model.Order;
@@ -12,15 +11,10 @@ import java.util.List;
 @Transactional
 @Repository
 public interface IOrderRepository extends JpaRepository<Order, Long> {
-    List<Order> findOrderByUser(User user);
+    List<Order> findOrdersByUser(User user);
 
-    void cancelOrderByOrderId(Long OrderId);
+    void deleteOrderByOrderId(Long orderId);
 
-    boolean existsOrderByUser(User user);
-
-    @Override
-    default List<Order> findAll(Sort sort) {
-        return null;
-    }
+    boolean existsOrdersByUser(User user);
 
 }

@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 import wszib.edu.pl.tyreshop.model.Order;
 import wszib.edu.pl.tyreshop.model.User;
 import wszib.edu.pl.tyreshop.model.dto.OrderDto;
-import wszib.edu.pl.tyreshop.repository.IOrderRepository;
 import wszib.edu.pl.tyreshop.services.IOrderService;
 import wszib.edu.pl.tyreshop.services.IUserService;
 
@@ -15,25 +14,23 @@ import java.util.List;
 @Service
 public class OrderServiceImpl implements IOrderService {
 
-    private IOrderRepository orderRepository;
     private IUserService userService;
     private ModelMapper modelMapper;
 
     @Autowired
-    public OrderServiceImpl(IOrderRepository orderRepository, IUserService userService, ModelMapper modelMapper) {
-        this.orderRepository = orderRepository;
+    public OrderServiceImpl(IUserService userService, ModelMapper modelMapper) {
         this.userService = userService;
         this.modelMapper = modelMapper;
     }
 
     @Override
     public List<Order> findOrdersByUser(User user) {
-        return this.orderRepository.findOrderByUser(user);
+        return null;
     }
 
     @Override
     public void cancelOrder(OrderDto orderDto) {
-    this.orderRepository.cancelOrderByOrderId(orderDto.getOrderId().longValue());
+
     }
 
     @Override

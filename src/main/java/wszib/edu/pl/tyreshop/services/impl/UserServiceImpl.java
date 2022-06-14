@@ -25,7 +25,7 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public void updateEmail(UserDto userDto) {
-        User user = this.userRepository.findByUsername(userDto.getUsername());
+        User user = this.userRepository.findByUserName(userDto.getUsername());
         user.setEmail(userDto.getEmail());
         userRepository.save(user);
     }
@@ -41,7 +41,7 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public User getUserByUsername(String username) {
-        return this.userRepository.findByUsername(username);
+        return this.userRepository.findByUserName(username);
     }
 
     @Override

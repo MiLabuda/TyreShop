@@ -1,19 +1,21 @@
 package wszib.edu.pl.tyreshop.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Data
-@Entity(name = "Tyre")
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity(name = "t_tyre")
 public class Tyre {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int tyreId;
-    private int ean;
+    private Long tyreId;
+    private Long ean;
+    @Enumerated(EnumType.STRING)
     private Season season;
     private String tyreManufacturer;
     private String tyreModel;
