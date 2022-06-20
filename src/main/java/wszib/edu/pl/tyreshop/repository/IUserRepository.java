@@ -10,10 +10,15 @@ import java.util.List;
 @Repository
 public interface IUserRepository extends JpaRepository<User, Long> {
 
-    User findByUserName(String userName);
+
+    User findById(long id);
+
+    User findByUsername(String username);
+
+    User findByEmail(String email);
 
     List<User> findAll();
 
-    boolean existsUserByUserName(String userName);
+    boolean existsUserByUsername(String username);
 
 }

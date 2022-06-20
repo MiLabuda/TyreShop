@@ -1,56 +1,49 @@
 package wszib.edu.pl.tyreshop.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.context.request.WebRequest;
-import wszib.edu.pl.tyreshop.model.Order;
 import wszib.edu.pl.tyreshop.model.User;
-import wszib.edu.pl.tyreshop.model.dto.OrderDto;
-import wszib.edu.pl.tyreshop.model.dto.UserDto;
-import wszib.edu.pl.tyreshop.repository.IUserRepository;
-import wszib.edu.pl.tyreshop.services.IOrderService;
 import wszib.edu.pl.tyreshop.services.IUserService;
 
 
-import java.util.List;
+import java.security.Principal;
 
-@RestController
-@RequestMapping("/api/user")
+@Controller
 public class UserController {
 
-    private IOrderService orderService;
-    private IUserService userService;
+    private final IUserService userService;
 
     @Autowired
-    public UserController(IOrderService orderService, IUserService userService) {
-        this.orderService = orderService;
+    public UserController(IUserService userService) {
         this.userService = userService;
     }
 
-    @GetMapping("/registration")
-    public String showRegistrationForm(WebRequest request, Model model) {
-        UserDto userDto = new UserDto();
-        model.addAttribute("user", userDto);
-        return "registration";
+    @GetMapping("/user")
+    public String userPanel(Principal principal, Model model){
+        User user = userService.findByUsername(principal.getName());
+
+        if(user != null) {
+            model.addAttribute("user", user);
+        }else{
+            return "error/404";
+        }
+        return "user";
     }
 
-    @GetMapping
-
-    @GetMapping("/login")
-    public String loginForm(Model model) {
-    }
-
-    @PostMapping("/orders")
-    public List<Order> getOrders(@RequestBody UserDto userDto) {
-        User user = this.userService.getUserByUsername(userDto.getUsername());
-        return this.orderService.findOrdersByUser(user);
-    }
-
-    @DeleteMapping("/orders/cancel")
-    public void cancelOrder(@RequestBody OrderDto orderDto){
-        this.orderService.cancelOrder(orderDto);
-    }
+//
+//
+//    @GetMapping("/orders")
+//    public List<Order> getOrders(@RequestBody UserDto userDto) {
+//        User user = this.userService.getUserByUsername(userDto.getUsername());
+//        return this.orderService.findOrdersByUser(user);
+//    }
+//
+//    @DeleteMapping("/orders/cancel")
+//    public void cancelOrder(@RequestBody OrderDto orderDto){
+//        this.orderService.cancelOrder(orderDto);
+//    }
 
 
 }
