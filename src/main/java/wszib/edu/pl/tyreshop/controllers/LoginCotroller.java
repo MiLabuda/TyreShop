@@ -14,7 +14,7 @@ import wszib.edu.pl.tyreshop.validator.UserValidator;
 @Controller
 public class LoginCotroller {
 
-    private IUserService userService;
+    private final IUserService userService;
 
     @Autowired
     public LoginCotroller(IUserService userService) {

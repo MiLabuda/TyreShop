@@ -17,3 +17,4 @@ public interface IOrderRepository extends JpaRepository<Order, Long> {
     boolean existsOrdersByUser(User user);
 
 }
+

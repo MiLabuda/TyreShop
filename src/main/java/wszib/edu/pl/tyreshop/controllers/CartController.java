@@ -10,8 +10,8 @@ import wszib.edu.pl.tyreshop.services.ITyreService;
 
 @Controller
 public class CartController {
-    private IShoppingCartService shoppingCartService;
-    private ITyreService tyreService;
+    private final IShoppingCartService shoppingCartService;
+    private final ITyreService tyreService;
 
     public CartController(IShoppingCartService shoppingCartService, ITyreService tyreService) {
         this.shoppingCartService = shoppingCartService;

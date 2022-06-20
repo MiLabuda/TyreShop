@@ -15,7 +15,7 @@ import wszib.edu.pl.tyreshop.validator.TyreValidator;
 @Controller
 public class TyreController {
 
-    private ITyreService tyreService;
+    private final ITyreService tyreService;
     private TyreValidator tyreValidator;
 
     @Autowired
