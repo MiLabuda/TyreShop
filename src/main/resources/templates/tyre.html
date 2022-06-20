@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Tyre page</title>
+    <link rel="stylesheet" type="text/css" href="/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="/tyre.css">
+</head>
+
+<body>
+
+<div th:replace="fragments/header :: header"></div>
+
+<div class="container">
+    <div class="row" style="margin-top:20px">
+        <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+            <form autocomplete="off" th:object="${tyreForm}" class="form" method="POST">
+                <fieldset>
+                    <h1 >Add new tyres</h1>
+                        <input type="text" th:field="*{tyreManufacturer}" class="form-control input-lg" title="TyreManufacturer" autofocus="true" placeholder="Tyre Manufacturer"/>
+
+                        <input type="text" th:field="*{tyreModel}" class="form-control input-lg" title="tyreModel" autofocus="false" placeholder="Tyre Model"/>
+
+                        <input type="number" th:field="*{tyreWidth}" class="form-control input-lg" title="Tyre Width" autofocus="false" placeholder="Tyre Width"/>
+
+                        <input type="number" th:field="*{tyreProfile}" class="form-control input-lg" title="Tyre Profile" autofocus="false" placeholder="Tyre Profile"/>
+
+                        <input type="number" th:field="*{tyreRim}" class="form-control input-lg" title="Tyre Rim" autofocus="false" placeholder="Tyre Rim"/>
+
+                        <input type="number" th:field="*{price}" class="form-control input-lg" title="Price" autofocus="false" placeholder="price"/>
+
+                    <input th:if="${method} == 'new'" class="btn btn-outline-dark" type="submit" th:action="@{/tyre/new}" th:value="Confirm"/>
+                    <input th:if="${method} == 'edit'" class="btn btn-outline-dark" type="submit" th:action="@{/tyre/edit/{tyreId}}" th:value="Confirm"/>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>

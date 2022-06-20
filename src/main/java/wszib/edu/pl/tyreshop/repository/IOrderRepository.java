@@ -5,10 +5,9 @@ import org.springframework.stereotype.Repository;
 import wszib.edu.pl.tyreshop.model.Order;
 import wszib.edu.pl.tyreshop.model.User;
 
-import javax.transaction.Transactional;
 import java.util.List;
 
-@Transactional
+
 @Repository
 public interface IOrderRepository extends JpaRepository<Order, Long> {
     List<Order> findOrdersByUser(User user);

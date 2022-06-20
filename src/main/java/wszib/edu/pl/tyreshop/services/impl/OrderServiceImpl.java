@@ -14,8 +14,8 @@ import java.util.List;
 @Service
 public class OrderServiceImpl implements IOrderService {
 
-    private IUserService userService;
-    private ModelMapper modelMapper;
+    private final IUserService userService;
+    private final ModelMapper modelMapper;
 
     @Autowired
     public OrderServiceImpl(IUserService userService, ModelMapper modelMapper) {

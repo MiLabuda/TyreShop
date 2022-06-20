@@ -1,16 +1,18 @@
 package wszib.edu.pl.tyreshop.services;
 
-import org.springframework.stereotype.Service;
 import wszib.edu.pl.tyreshop.model.Tyre;
 
 import java.util.List;
 
 public interface ITyreService {
 
-    Tyre getTyreById(Integer id);
-    Tyre getTyreByEan(Integer ean);
-    void updateTyre(Tyre tyre);
-    List<Tyre> getAllTyres();
+    void save (Tyre tyre);
+    void edit(Long id, Tyre newTyre);
+    void delete(Long id);
+    Long count();
+    Tyre getTyreById(Long id);
+    Tyre getTyreByEan(Long ean);
+    List<Tyre> findAll();
 
 
 }

@@ -1,40 +1,85 @@
 package wszib.edu.pl.tyreshop.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+
+import lombok.*;
+import org.hibernate.Hibernate;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import java.math.BigDecimal;
+import java.util.Objects;
 
-@Data
+@Getter
+@Setter
+@ToString
+@RequiredArgsConstructor
 @AllArgsConstructor
-@NoArgsConstructor
 @Entity(name = "t_tyre")
 public class Tyre {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long tyreId;
+
+    @NotNull
     private Long ean;
-    @Enumerated(EnumType.STRING)
-    private Season season;
+
+//    @NotNull
+//    @NotEmpty
+//    @Enumerated(EnumType.STRING)
+//    private Season season;
+
+    @NotNull
+    @NotEmpty
     private String tyreManufacturer;
+
+    @NotNull
+    @NotEmpty
     private String tyreModel;
+
+    @NotNull
     private int tyreWidth;
+
+    @NotNull
     private int tyreProfile;
+
+    @NotNull
     private int tyreRim;
-    private int loadIndex;
-    private char speedIndex;
-    private int dot;
+
+//    @NotNull
+//    @NotEmpty
+//    private int loadIndex;
+//
+//    @NotNull
+//    @NotEmpty
+//    private char speedIndex;
+//
+//    @NotNull
+//    @NotEmpty
+//    private int dot;
+
+    @NotNull
     private int quantity;
-    private double price;
 
+    @NotNull
+    private BigDecimal price;
 
+//    public enum Season {
+//        SUMMER,
+//        WINTER,
+//        ALLSEASON
+//    }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        Tyre tyre = (Tyre) o;
+        return tyreId != null && Objects.equals(tyreId, tyre.tyreId);
+    }
 
-
-    public enum Season {
-        SUMMER,
-        WINTER,
-        ALLSEASON
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
     }
 }

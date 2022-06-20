@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Cart page</title>
+  <link rel="stylesheet" type="text/css" href="/normalize.css" />
+  <link rel="stylesheet" type="text/css" href="/cart.css">
+</head>
+
+<body>
+
+<div th:replace="fragments/header :: header"></div>
+
+<div class="container">
+  <div th:if="${!tyres.isEmpty()}" class="col-3">
+    <h2 th:text="Cart"></h2>
+    <div class="card" th:each="tyre : ${tyres.entrySet()}">
+      <h3 th:text="${tyre.getKey().getTyreManufacturer()}"></h3>
+      <h3 th:text="${tyre.getKey().getTyreModel()}"></h3>
+      <h3 th:text="${tyre.getKey().getTyreWidth()}"></h3>
+      <h3 th:text="${tyre.getKey().getTyreProfile()}"></h3>
+      <h3 th:text="${tyre.getKey().getTyreRim()}"></h3>
+      <h4 th:text="${tyre.getValue()}"></h4>
+      <h4 th:text="${tyre.getKey().getPrice()}"></h4>
+      <a th:href="@{'/cart/remove/{id}'(id=${tyre.getKey().getTyreId()})}" >
+        <button type="button"  th:text="Remove"></button>
+      </a>
+      <br>
+    </div>
+  </div>
+
+  <div th:if="${tyres.isEmpty()}" >
+    <h2 >Cart is empty</h2>
+  </div>
+
+  <br>
+  <a th:href="@{'/cart/clear/'}" >
+    <button type="button" >Clear</button>
+  </a>
+
+  <br>
+  <div >
+    <h3 th:text="${totalPrice}"></h3>">
+    <a th:href="@{'/cart/checkout'}">
+      <button type="button" >Checkout</button>
+    </a>
+  </div>
+</div>
+</body>
+</html>
