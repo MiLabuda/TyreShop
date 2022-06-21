@@ -10,6 +10,8 @@ import java.util.List;
 @Repository
 public interface ITyreRepository extends JpaRepository<Tyre, Long> {
     Tyre findByTyreId(Long tyreId);
+
     Tyre findByEan(Long ean);
+
     List<Tyre> findAll();
 }

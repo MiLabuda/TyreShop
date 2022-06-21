@@ -35,11 +35,11 @@
                     <li sec:authorize="!isAuthenticated()">
                         <a  href="/register">Register</a>
                     </li>
-                    <li>
-                        <a href="/cart">Cart</a>
+                    <li sec:authorize="isAuthenticated()">
+                        <a href="/cart" >Cart</a>
                     </li>
-                    <li>
-                        <a href="/tyre/new">Add Tyre</a>
+                    <li sec:authorize="isAuthenticated()">
+                        <a href="/tyre/new" >Add Tyre</a>
                     </li>
                     <li>
                         <a href="/about">About</a>

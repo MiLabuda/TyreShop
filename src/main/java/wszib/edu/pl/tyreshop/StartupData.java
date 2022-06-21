@@ -12,8 +12,8 @@ import java.math.BigDecimal;
 
 @Component
 public class StartupData implements CommandLineRunner {
-    private IUserService userService;
-    private ITyreService tyreService;
+    private final IUserService userService;
+    private final ITyreService tyreService;
 
     @Autowired
     public StartupData(IUserService userService, ITyreService tyreService) {
@@ -28,7 +28,7 @@ public class StartupData implements CommandLineRunner {
         exampleTyres();
     }
 
-    private void userAccounts(){
+    private void userAccounts() {
         User user1 = new User();
         User user2 = new User();
 
@@ -53,7 +53,7 @@ public class StartupData implements CommandLineRunner {
     }
 
 
-    private void exampleTyres(){
+    private void exampleTyres() {
         Tyre tyre1 = new Tyre();
         Tyre tyre2 = new Tyre();
         Tyre tyre3 = new Tyre();

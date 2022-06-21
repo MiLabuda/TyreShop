@@ -43,9 +43,9 @@ public class UserServiceImpl implements IUserService {
         UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(userDetails, password, userDetails.getAuthorities());
         authenticationManager.authenticate(token);
 
-        if(token.isAuthenticated()){
+        if (token.isAuthenticated()) {
             SecurityContextHolder.getContext().setAuthentication(token);
-        }else{
+        } else {
 
         }
 

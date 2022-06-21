@@ -9,7 +9,7 @@ import wszib.edu.pl.tyreshop.model.Tyre;
 @Component
 public class TyreValidator implements Validator {
 
-    private final String  ERROR_EMPTY = "This field can't be empty";
+    private final String ERROR_EMPTY = "This field can't be empty";
 
     @Override
     public boolean supports(Class<?> clazz) {
@@ -23,6 +23,8 @@ public class TyreValidator implements Validator {
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "ean", ERROR_EMPTY);
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "tyreManufacturer", ERROR_EMPTY);
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "TyreModel", ERROR_EMPTY);
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "tyreWidth", ERROR_EMPTY);
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "tyreProfile", ERROR_EMPTY);
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "tyreRim", ERROR_EMPTY);
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "quantity", ERROR_EMPTY);
     }
 }

@@ -41,9 +41,5 @@ j
 :src/main/java/wszib/edu/pl/tyreshop/model/dto/UserDto.java,d/8/d8203e63358cef4e26d514a371d2349c0566d0d5
 7
 pom.xml,4/4/442292b8a7efeabbe4cc176709b833b1792140ec
-v
-Fsrc/main/java/wszib/edu/pl/tyreshop/services/IShoppingCartService.java,1/7/17073a8273dd57ffc7115bb2b0fa57cc846af8a0
-n
->src/main/java/wszib/edu/pl/tyreshop/services/ITyreService.java,0/8/085d09bf731712cd088a4904b1c2e2d3c3ec4945
 s
 Csrc/main/java/wszib/edu/pl/tyreshop/configuration/WebMvcConfig.java,5/b/5b91f51c1422c4336a7bf5ac114ddd60f3955cef
