@@ -19,7 +19,7 @@ import java.util.Map;
 @Transactional
 public class ShoppingCartServiceImpl implements IShoppingCartService {
 
-    private Map<Tyre, Integer> cart = new LinkedHashMap<>();
+    private final Map<Tyre, Integer> cart = new LinkedHashMap<>();
 
     @Override
     public void addTyre(Tyre tyre) {
@@ -32,10 +32,9 @@ public class ShoppingCartServiceImpl implements IShoppingCartService {
 
     @Override
     public void removeTyre(Tyre tyre) {
-        if(cart.containsKey(tyre)) {
-            if(cart.get(tyre) > 1) cart.replace(tyre, cart.get(tyre) - 1);
-        }else if (cart.get(tyre) == 1) {
-            cart.remove(tyre);
+        if (cart.containsKey(tyre)) {
+            if (cart.get(tyre) > 1) cart.replace(tyre, cart.get(tyre) - 1);
+            else if (cart.get(tyre) == 1) cart.remove(tyre);
         }
     }
 
@@ -60,5 +59,6 @@ public class ShoppingCartServiceImpl implements IShoppingCartService {
     @Override
     public void cartCheckout() {
         cart.clear();
+        //TODO finalizing the order
     }
 }
