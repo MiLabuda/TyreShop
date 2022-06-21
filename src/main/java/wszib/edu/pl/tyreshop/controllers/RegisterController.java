@@ -1,6 +1,8 @@
 package wszib.edu.pl.tyreshop.controllers;
 
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +16,8 @@ import wszib.edu.pl.tyreshop.validator.UserValidator;
 
 @Controller
 public class RegisterController {
+
+    private static final Logger logger = LoggerFactory.getLogger(RegisterController.class);
     private final IUserService userService;
     private final UserValidator userValidator;
 
@@ -35,6 +39,7 @@ public class RegisterController {
         userValidator.validate(userForm, bindingResult);
 
         if(bindingResult.hasErrors()){
+            logger.error(String.valueOf(bindingResult.getFieldError()));
             return "register";
         }
 
