@@ -3,9 +3,8 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Tyre page</title>
-    <link rel="stylesheet" type="text/css" href="/normalize.css" />
-    <link rel="stylesheet" type="text/css" href="/tyre.css">
+    <title>Tyre</title>
+    <link rel="stylesheet" type="text/css" href="/style.css">
 </head>
 
 <body>
@@ -13,11 +12,10 @@
 <div th:replace="fragments/header :: header"></div>
 
 <div class="container">
-    <div class="row" style="margin-top:20px">
-        <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+    <div class="flex-column">
             <form autocomplete="off" th:object="${tyreForm}" class="form" method="POST">
                 <fieldset>
-                    <h1 >Add new tyres</h1>
+                    <h3 >Add new tyres</h3>
                         <input type="text" th:field="*{tyreManufacturer}" class="form-control input-lg" title="TyreManufacturer" autofocus="true" placeholder="Tyre Manufacturer"/>
 
                         <input type="text" th:field="*{tyreModel}" class="form-control input-lg" title="tyreModel" autofocus="false" placeholder="Tyre Model"/>
@@ -34,7 +32,6 @@
                     <input th:if="${method} == 'edit'" class="btn btn-outline-dark" type="submit" th:action="@{/tyre/edit/{tyreId}}" th:value="Confirm"/>
                 </fieldset>
             </form>
-        </div>
     </div>
 </div>
 </body>

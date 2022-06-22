@@ -24,6 +24,9 @@ footer {
 .container {
     padding-top: 15px;
     padding-bottom: 8px;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
 }
 
 .btn {
@@ -64,4 +67,18 @@ nav {
 #cart {
     width: 44px;
     height: 44px;
+}
+
+ul {
+    display: flex;
+    flex-flow: row;
+    justify-content:flex-start;
+    gap: 30px;
+}
+
+nav{
+    display: flex;
+    flex-flow: row;
+    justify-content: flex-end;
+
 }

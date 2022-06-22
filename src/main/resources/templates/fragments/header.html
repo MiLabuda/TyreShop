@@ -11,16 +11,21 @@
 <body>
 <div th:fragment="header">
     <nav>
-        <a href="/main">TyreShop</a>
+
         <div >
-            <div >
-                <form >
-                    <input  type="search" title="search-product">
-                    <button type="submit" th:text="Search" ></button>
-                </form>
                 <ul  >
-                    <li   sec:authorize="isAuthenticated()">Logged as</li>
+                    <li>
+                        <a href="/main">TyreShop</a>
+                    </li>
+                    <li>
+                        <form action="search" th:action="@{/search/{tyreId}}">
+                        <input type="number" title="search-product">
+                        <input type="submit"   th:value="Search"/>
+                    </form>
+                    </li>
+
                     <li  sec:authorize="isAuthenticated()">
+                        <a>Logged as</a>
                         <a  sec:authorize="hasRole('ROLE_ADMIN')" style="color: #1e90ff"
                            th:href="@{/admin}" th:text="${#httpServletRequest.getRemoteUser().toUpperCase()}"></a>
                         <a  sec:authorize="hasRole('ROLE_USER')" style="color: #ff0000;"
@@ -46,7 +51,6 @@
                     </li>
                 </ul>
             </div>
-        </div>
     </nav>
 </div>
 
