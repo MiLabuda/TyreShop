@@ -14,4 +14,5 @@ public interface ITyreRepository extends JpaRepository<Tyre, Long> {
     Tyre findByEan(Long ean);
 
     List<Tyre> findAll();
+
 }

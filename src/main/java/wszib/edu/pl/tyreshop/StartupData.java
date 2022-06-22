@@ -31,6 +31,7 @@ public class StartupData implements CommandLineRunner {
     private void userAccounts() {
         User user1 = new User();
         User user2 = new User();
+        User user3 = new User();
 
         user1.setFirstName("Frodo");
         user1.setLastName("Baggins");
@@ -38,7 +39,6 @@ public class StartupData implements CommandLineRunner {
         user1.setPasswordConfirm("zlotypierscionek");
         user1.setEmail("ringeberear@shyre.me");
         user1.setUsername("FRODO");
-        user1.setRole(User.Role.USER);
 
         user2.setFirstName("Samwise");
         user2.setLastName("Gamgee");
@@ -46,10 +46,17 @@ public class StartupData implements CommandLineRunner {
         user2.setPasswordConfirm("potatoes");
         user2.setEmail("sam@shyre.me");
         user2.setUsername("SAM");
-        user2.setRole(User.Role.ADMIN);
+
+        user3.setFirstName("admin");
+        user3.setLastName("admin");
+        user3.setPassword("password");
+        user3.setPasswordConfirm("password");
+        user3.setEmail("admin@wp.pl");
+        user3.setUsername("admin");
 
         userService.save(user1);
         userService.save(user2);
+        userService.save(user3);
     }
 
 

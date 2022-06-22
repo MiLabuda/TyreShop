@@ -1,5 +1,7 @@
 package wszib.edu.pl.tyreshop.services.impl;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -17,6 +19,7 @@ import java.util.Optional;
 @Service
 public class UserServiceImpl implements IUserService {
 
+    private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
     private final IUserRepository userRepository;
     private final UserDetailsService userDetailsService;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -32,7 +35,7 @@ public class UserServiceImpl implements IUserService {
     @Override
     public void save(User user) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        user.setRole(User.Role.ADMIN);
+        user.setPasswordConfirm(bCryptPasswordEncoder.encode(user.getPasswordConfirm()));
         userRepository.save(user);
     }
 
@@ -45,8 +48,9 @@ public class UserServiceImpl implements IUserService {
 
         if (token.isAuthenticated()) {
             SecurityContextHolder.getContext().setAuthentication(token);
+            logger.debug(String.format("User %s logged in successfully!", username));
         } else {
-
+            logger.error(String.format("Error with %s authentication!", username));
         }
 
     }

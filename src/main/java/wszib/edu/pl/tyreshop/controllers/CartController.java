@@ -65,7 +65,7 @@ public class CartController {
 
         shoppingCartService.cartCheckout();
 
-        return "redirect:/cart";
+        return "order";
     }
 
 

@@ -18,7 +18,7 @@ public class TyreValidator implements Validator {
 
     @Override
     public void validate(Object target, Errors errors) {
-        Tyre tyre = (Tyre) target;
+        Tyre tyre;
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "ean", ERROR_EMPTY);
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "tyreManufacturer", ERROR_EMPTY);

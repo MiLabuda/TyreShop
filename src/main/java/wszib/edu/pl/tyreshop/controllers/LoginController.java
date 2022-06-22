@@ -1,7 +1,5 @@
 package wszib.edu.pl.tyreshop.controllers;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,27 +8,25 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import wszib.edu.pl.tyreshop.model.User;
 import wszib.edu.pl.tyreshop.services.IUserService;
-import wszib.edu.pl.tyreshop.services.impl.UserServiceImpl;
 
-import javax.security.auth.login.LoginContext;
 
 @Controller
-public class LoginCotroller {
+public class LoginController {
 
-    private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
     private final IUserService userService;
 
     @Autowired
-    public LoginCotroller(IUserService userService) {
+    public LoginController(IUserService userService) {
         this.userService = userService;
     }
 
     @GetMapping("/login")
     public String login(Model model, String error) {
-        if (error != null)
+        if (error != null) {
             model.addAttribute("error", "Your username or password is invalid");
             return "login";
-
+        }
+        return "login";
     }
 
     @PostMapping("/login")
