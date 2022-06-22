@@ -55,7 +55,7 @@ public class CartController {
     public String clearProductsInCart() {
 
         shoppingCartService.clearTyres();
-        logger.debug(String.format("The cart is cleared"));
+        logger.debug("The cart is cleared");
 
         return "redirect:/cart";
     }
