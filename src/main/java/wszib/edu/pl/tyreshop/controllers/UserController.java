@@ -32,18 +32,4 @@ public class UserController {
         return "user";
     }
 
-//
-//
-//    @GetMapping("/orders")
-//    public List<Order> getOrders(@RequestBody UserDto userDto) {
-//        User user = this.userService.getUserByUsername(userDto.getUsername());
-//        return this.orderService.findOrdersByUser(user);
-//    }
-//
-//    @DeleteMapping("/orders/cancel")
-//    public void cancelOrder(@RequestBody OrderDto orderDto){
-//        this.orderService.cancelOrder(orderDto);
-//    }
-
-
 }

@@ -39,7 +39,7 @@ public class RegisterController {
         userValidator.validate(userForm, bindingResult);
 
         if(bindingResult.hasErrors()){
-            logger.error(String.valueOf(bindingResult.getFieldError()));
+            if(logger.isErrorEnabled()) logger.error(String.valueOf(bindingResult.getFieldError()));
             return "register";
         }
 

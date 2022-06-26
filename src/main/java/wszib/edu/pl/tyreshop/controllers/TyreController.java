@@ -17,6 +17,9 @@ import wszib.edu.pl.tyreshop.validator.TyreValidator;
 @Controller
 public class TyreController {
 
+    private static final String METHOD = "method";
+    private static final String VIEW_MAIN = "redirect:/main";
+
     private static final Logger logger = LoggerFactory.getLogger(TyreController.class);
     private final ITyreService tyreService;
     private final TyreValidator tyreValidator;
@@ -30,7 +33,7 @@ public class TyreController {
     @GetMapping("/tyre/new")
     public String newTyre(Model model){
         model.addAttribute("tyreForm", new Tyre());
-        model.addAttribute("method", "new");
+        model.addAttribute(METHOD, "new");
     return "tyre";
     }
 
@@ -39,52 +42,55 @@ public class TyreController {
         tyreValidator.validate(tyreForm, bindingResult);
 
         if(bindingResult.hasErrors()) {
-            logger.error(String.valueOf(bindingResult.getFieldError()));
-            model.addAttribute("method", "new");
+            if(logger.isErrorEnabled()) logger.error(String.valueOf(bindingResult.getFieldError()));
+            model.addAttribute(METHOD, "new");
             return "tyre";
         }
         tyreService.save(tyreForm);
-        logger.debug(String.format("Tyre with id: %s successfully created.", tyreForm.getTyreId()));
+        if (logger.isDebugEnabled()) logger.debug(String.format("Tyre with id: %s successfully created.", tyreForm.getTyreId()));
 
-        return "redirect:/main";
+        return VIEW_MAIN;
     }
 
     @GetMapping("/tyre/edit{id}")
     public String editTyre(@PathVariable("id") long tyreId, Model model){
         Tyre tyre = tyreService.getTyreById(tyreId);
+
         if(tyre != null) {
             model.addAttribute("tyreForm", tyre);
-            model.addAttribute("method", "edit");
-            return "product";
+            model.addAttribute(METHOD, "edit");
+            return "tyre";
         }else{
+            System.out.println("404");
+            if(logger.isDebugEnabled()) logger.debug("Problem occurs while editing the tyre");
             return "error/404";
+
         }
     }
-
 
     @PostMapping("/tyre/edit{id}")
     public String editTyre(@PathVariable("id") long tyreId, @ModelAttribute("tyreForm") Tyre tyreForm, BindingResult bindingResult, Model model) {
         tyreValidator.validate(tyreForm, bindingResult);
 
         if(bindingResult.hasErrors()) {
-            logger.error(String.valueOf(bindingResult.getFieldError()));
-            model.addAttribute("method", "edit");
+            if(logger.isErrorEnabled()) logger.error(String.valueOf(bindingResult.getFieldError()));
+            model.addAttribute(METHOD, "edit");
             return "tyre";
         }
         tyreService.edit(tyreId, tyreForm);
-        logger.debug(String.format("Tyre with id: %s has been successfully edited.", tyreId));
+        if(logger.isDebugEnabled()) logger.debug(String.format("Tyre with id: %s has been successfully edited.", tyreId));
 
-        return "redirect:/main";
+        return VIEW_MAIN;
     }
 
-    @PostMapping("/tyre/delete/{id}")
+    @GetMapping("/tyre/delete/{id}")
     public String deleteProduct(@PathVariable("id") long tyreId) {
         Tyre tyre = tyreService.getTyreById(tyreId);
 
         if(tyre !=null) {
             tyreService.delete(tyreId);
-            logger.debug(String.format("Tyre with id: %s successfully deleted.", tyre.getTyreId()));
-            return "redirect:/main";
+            if(logger.isDebugEnabled()) logger.debug(String.format("Tyre with id: %s successfully deleted.", tyre.getTyreId()));
+            return VIEW_MAIN;
         }else{
             return "error/404";
         }

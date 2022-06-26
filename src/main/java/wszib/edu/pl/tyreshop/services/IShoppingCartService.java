@@ -1,6 +1,5 @@
 package wszib.edu.pl.tyreshop.services;
 
-import org.springframework.stereotype.Service;
 import wszib.edu.pl.tyreshop.model.Tyre;
 
 import java.math.BigDecimal;

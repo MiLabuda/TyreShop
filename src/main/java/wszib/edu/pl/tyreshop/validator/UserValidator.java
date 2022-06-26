@@ -12,7 +12,18 @@ import wszib.edu.pl.tyreshop.services.IUserService;
 @Component
 public class UserValidator implements Validator {
 
+    private static final String USERNAME = "username";
+    private static final String PASSWORD = "password";
+    private static final String PASSWORD_CONFIRM = "passwordConfirm";
+    private static final String EMAIL = "email";
+    private static final Integer MIN = 4;
+    private static final Integer MAX = 32;
+
+
+
+
     private final IUserService userService;
+
 
     @Autowired
     public UserValidator(IUserService userService) {
@@ -28,36 +39,29 @@ public class UserValidator implements Validator {
     public void validate(Object target, Errors errors) {
         User user = (User) target;
 
-        //Username and password can't me empty or contain whitespace
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "username", "error.not_empty");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "error.not_empty");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, USERNAME, "error.not_empty");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, PASSWORD, "error.not_empty");
 
-        // Username must have from 4 characters to 32
-        if (user.getUsername().length() < 4) {
-            errors.rejectValue("username", "register.error.username.less_4");
+        if (user.getUsername().length() < MIN) {
+            errors.rejectValue(USERNAME, "register.error.username.less_4");
         }
-        if(user.getUsername().length() > 32){
-            errors.rejectValue("username","register.error.username.over_32");
+        if(user.getUsername().length() > MAX){
+            errors.rejectValue(USERNAME,"register.error.username.over_32");
         }
-        //Username can't be duplicated
         if (userService.findByUsername(user.getUsername()) != null) {
-            errors.rejectValue("username", "register.error.duplicated.username");
+            errors.rejectValue(USERNAME, "register.error.duplicated.username");
         }
-        //Email can't be duplicated
         if (userService.findByEmail(user.getEmail()) != null){
-            errors.rejectValue("email", "register.error.duplicated.email");
+            errors.rejectValue(EMAIL, "register.error.duplicated.email");
         }
-        //Password must have at least 8 characters and max 32
-        if (user.getPassword().length() < 8) {
-            errors.rejectValue("password", "register.error.password.less_8");
+        if (user.getPassword().length() < MIN) {
+            errors.rejectValue(PASSWORD, "register.error.password.less_4");
         }
-        if (user.getPassword().length() > 32){
-            errors.rejectValue("password", "register.error.password.over_32");
+        if (user.getPassword().length() > MAX){
+            errors.rejectValue(PASSWORD, "register.error.password.over_32");
         }
-        //Password must be the same as the confirmation password
         if (!user.getPasswordConfirm().equals(user.getPassword())) {
-            errors.rejectValue("passwordConfirm", "register.error.diff_password");
+            errors.rejectValue(PASSWORD_CONFIRM, "register.error.diff_password");
         }
-
     }
 }

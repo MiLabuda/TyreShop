@@ -26,6 +26,8 @@
 
                         <input type="number" th:field="*{tyreRim}" class="form-control input-lg" title="Tyre Rim" autofocus="false" placeholder="Tyre Rim"/>
 
+                    <input type="number" th:field="*{ean}" class="form-control input-lg" title="Tyre Rim" autofocus="false" placeholder="Tyre EAN"/>
+
                         <input type="number" th:field="*{price}" class="form-control input-lg" title="Price" autofocus="false" placeholder="price"/>
 
                     <input th:if="${method} == 'new'" class="btn btn-outline-dark" type="submit" th:action="@{/tyre/new}" th:value="Confirm"/>

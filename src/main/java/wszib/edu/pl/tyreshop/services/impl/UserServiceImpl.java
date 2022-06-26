@@ -48,9 +48,9 @@ public class UserServiceImpl implements IUserService {
 
         if (token.isAuthenticated()) {
             SecurityContextHolder.getContext().setAuthentication(token);
-            logger.debug(String.format("User %s logged in successfully!", username));
+            if(logger.isDebugEnabled()) logger.debug(String.format("User %s logged in successfully!", username));
         } else {
-            logger.error(String.format("Error with %s authentication!", username));
+            if(logger.isErrorEnabled()) logger.error(String.format("Error with %s authentication!", username));
         }
 
     }

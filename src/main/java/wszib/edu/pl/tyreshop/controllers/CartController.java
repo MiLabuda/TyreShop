@@ -35,7 +35,7 @@ public class CartController {
         Tyre tyre = tyreService.getTyreById(id);
         if (tyre != null) {
             shoppingCartService.addTyre(tyre);
-            logger.debug(String.format("Tyre with id: %s added to shopping cart.", id));
+            if(logger.isDebugEnabled()) logger.debug(String.format("Tyre with id: %s added to shopping cart.", id));
         }
         return "redirect:/main";
     }
@@ -45,7 +45,7 @@ public class CartController {
         Tyre tyre = tyreService.getTyreById(id);
         if (tyre != null) {
             shoppingCartService.removeTyre(tyre);
-            logger.debug(String.format("Tyre with id: %s removed from shopping cart.", id));
+            if(logger.isDebugEnabled()) logger.debug(String.format("Tyre with id: %s removed from shopping cart.", id));
 
         }
         return "redirect:/cart";
@@ -55,7 +55,7 @@ public class CartController {
     public String clearProductsInCart() {
 
         shoppingCartService.clearTyres();
-        logger.debug("The cart is cleared");
+        if(logger.isDebugEnabled()) logger.debug("The cart is cleared");
 
         return "redirect:/cart";
     }
